@@ -10,9 +10,9 @@
     <include file="$(find av_capture)/launch/audio.launch" if="$(arg publish_audio)"/>
 
     <node pkg="rosbag" type="record" name="rosbag_av_capture"
-          args="$(eval 'record -b 512 -o '+ output_dir + '/av_capture ' +
-	  '/usb_cam/image_raw/compressed ' if capture_video else '' + 
-	  '/audio/audio' if capture_audio else '' +
-	  '-e /cellulo*' if capture_cellulo else '')"
+          args="$(eval 'record -b 512 -o '+ output_dir + '/av_capture ' + 
+          ('/usb_cam/image_raw/compressed ' if capture_video else '') + 
+          ('/audio/audio ' if capture_audio else '') +
+          ('-e &quot;/cellulo/(.*)&quot;' if capture_cellulo else ''))"
 	  if="$(eval capture_audio or capture_video or capture_cellulo)" />
 </launch>
