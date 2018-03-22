@@ -1,0 +1,10 @@
+<launch>
+    <arg name="record" default="true" />
+
+    <include file="$(find av_capture)/launch/webcam.launch" />
+    <include file="$(find av_capture)/launch/audio.launch" />
+
+    <node pkg="rosbag" type="record" name="rosbag_av_capture"
+          args="record -o /tmp/av_capture /usb_cam/image_raw/compressed /audio/audio"
+	  if="$(arg record)" />
+</launch>
