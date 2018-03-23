@@ -1,10 +1,16 @@
 <launch>
-    <arg name="record" default="true" />
+    <arg name="capture_audio" default="true" />
+    <arg name="capture_video" default="true" />
+    <arg name="publish_audio" default="true" />
+    <arg name="publish_video" default="true" />
+    <arg name="output_dir" default="/tmp" />
 
-    <include file="$(find av_capture)/launch/webcam.launch" />
-    <include file="$(find av_capture)/launch/audio.launch" />
+    <include file="$(find av_capture)/launch/webcam.launch" if="$(arg publish_video)" />
+    <include file="$(find av_capture)/launch/audio.launch" if="$(arg publish_audio)"/>
 
     <node pkg="rosbag" type="record" name="rosbag_av_capture"
-          args="record -o /tmp/av_capture /usb_cam/image_raw/compressed /audio/audio"
-	  if="$(arg record)" />
+          args="$(eval 'record -o '+ output_dir + '/av_capture ' + 
+	  '/usb_cam/image_raw/compressed ' if capture_video else '' + 
+	  '/audio/audio' if capture_audio else '')"
+	  if="$(eval capture_audio or capture_video)" />
 </launch>
