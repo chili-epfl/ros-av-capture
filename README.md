@@ -5,8 +5,7 @@
 
 #### Usage
 
- - Open a terminal and `cd` into your catkin workspace `src` directory
- - Clone this repo to a directory called `av_capture` (`git clone https://github.com/chili-epfl/ros-av-capture.git av_capture`)
+ - Clone this repo in the `src` directory of your catkin workspace
  - Run `catkin_make` from the root of your catkin workspace
  - Source `devel/setup.bash`
  - To start capturing, use `roslaunch av_capture av_capture.launch`
