@@ -1,8 +1,8 @@
 <launch>
-  <!-- arecord -l will show available input devices, use the car number as
+  <!-- arecord -l will show available input devices, use the card number as
       the first number and the subdevice number as the second in a string
       like hw:1,0 -->
-  <arg name="device" default=""/>
+  <arg name="device" default="hw:1,0"/>
   <arg name="channels" default="1"/>
   <arg name="sample_rate" default="16000"/>
   <arg name="ns" default="audio"/>
