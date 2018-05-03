@@ -4,4 +4,6 @@
 
     <include file="$(find av_capture)/launch/webcam.launch" if="$(arg publish_video)" />
     <include file="$(find av_capture)/launch/audio.launch" if="$(arg publish_audio)"/>
+
+    <node name="rosbag_recorder_server" pkg="rosbag_recorder" type="rosbag_recorder_server.py" />
 </launch>
